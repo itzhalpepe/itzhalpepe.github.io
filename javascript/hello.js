@@ -1,4 +1,4 @@
-// alert("Hello world");
+  // alert("Hello world");
 
 // let message = "Hello world";
 // alert(message);
@@ -113,13 +113,32 @@ birthYears.forEach(year => {
 });
 
 let users = [
-    {firstname: "John", lastname: "Smith"; birthYear: 1960}
-    {firstname: "Jane", lastname: "Doe"; birthYear: 1970}
-    {firstname: "Max", lastname: "Mustermann"; birthYear: 1990}
+    { firstname: "John", lastname: "Smith", birthYear: 1960 },
+    { firstname: "Jane", lastname: "Doe", birthYear: 1970 },
+    { firstname: "Max", lastname: "Mustermann", birthYear: 1990 },
 ];
 
 console.log(users);
 
 users.forEach(user => {
     console.log(`${user.firstname} ist oder wird heuer ${calcAge(user.birthYear)} Jahre alt.`);
+});
+
+let firstParagraph = document.querySelector("#pFirst");
+console.log(firstParagraph);
+// firstParagraph.remove();
+firstParagraph.innerHTML = "Test";
+firstParagraph.style.color = "red";
+
+let indetedParas = document.querySelectorAll(".indent");
+console.log(indetedParas);
+indetedParas.innerHTML = "Test2";
+indetedParas.forEach((para, index) => {
+    console.log(`Data attribut LAT ${para.dataset.lat}`);
+    para.innerHTML = `Absatz ${index}`;
+    if ( index % 2 == 0) {
+        para.style.color = "red";
+    } else {
+        para.style.color = "blue";
+    }
 });
