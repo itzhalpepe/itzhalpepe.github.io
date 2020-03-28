@@ -39,6 +39,6 @@ L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
 }).addTo(mymap);
 
 
-var marker = L.marker([-41.327222, 174.805278]).addTo(mymap);
+var popup = L.marker([-41.327222, 174.805278]).addTo(mymap);
 
 marker.bindPopup("<b>Flughafen von Wellington</b><br>Hauptstadt Neuseelands").openPopup();
