@@ -1,4 +1,4 @@
-var mymap = L.map('map').setView([51.505, -0.09], 13);
+var mymap = L.map('map').setView([-41.327222, 174.805278], 13);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -14,8 +14,8 @@ circle.bindPopup("I am a circle.");
 polygon.bindPopup("I am a polygon.");
 
 var popup = L.popup()
-    .setLatLng([51.5, -0.09])
-    .setContent("I am a standalone popup.")
+    .setLatLng([-41.327222, 174.805278])
+    .setContent("Hier befindet sich der Flughafen von Wellington.")
     .openOn(mymap);
 
 var popup = L.popup();
