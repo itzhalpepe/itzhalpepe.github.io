@@ -83,7 +83,12 @@ footer .next {
     main {
         max-width: 90%;
     }
-    header img.banner{
+
+    header img.banner {
         width: 100vw;
     }
+}
+
+#mapid {
+    height: 180px;
 }
