@@ -14,6 +14,5 @@ L.control.layers({
     "CyclOSM" : L.tileLayer.provider("CyclOSM"),
     "Stamen.Watercolor" : L.tileLayer.provider("Stamen.Watercolor"),
     "Stamen.TerrainBackground" : L.tileLayer.provider("Stamen.TerrainBackground"),
-
-
+    "Esri.WorldImagery" : L.tileLayer.provider("Esri.WorldImagery"),
 }).addTo(map)
