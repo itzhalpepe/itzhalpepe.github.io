@@ -16,3 +16,5 @@ L.control.layers({
     "Stamen.TerrainBackground" : L.tileLayer.provider("Stamen.TerrainBackground"),
     "Esri.WorldImagery" : L.tileLayer.provider("Esri.WorldImagery"),
 }).addTo(map)
+
+L.marker([0,0]).addTo(map);
