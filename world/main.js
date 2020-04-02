@@ -25,7 +25,7 @@ L.marker([0, 0]).addTo(map);
 
 console.log(CONFIRMED);
 
-let drawCircles = function(data){
+let drawCircles = function (data) {
     // for-Schleife über alle Arrays der CONFIRMED Einträge:
 
     for (let i = 1; i < data.length; i++) {
