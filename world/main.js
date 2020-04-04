@@ -19,11 +19,11 @@ L.control.layers({
     "Esri.WorldImagery": L.tileLayer.provider("Esri.WorldImagery"),
 }, {
     "Thematische Darstellung": circleGroup
-}).addTo(map)
+}).addTo(map);
 
-L.marker([0, 0]).addTo(map);
+// L.marker([0, 0]).addTo(map);
 
-console.log(CONFIRMED);
+// console.log(CONFIRMED);
 
 let drawCircles = function (data) {
     // for-Schleife über alle Arrays der CONFIRMED Einträge:
@@ -47,3 +47,5 @@ let drawCircles = function (data) {
 };
 
 drawCircles(CONFIRMED);
+drawCircles(RECOVERED);
+drawCircles(DEATHS);
