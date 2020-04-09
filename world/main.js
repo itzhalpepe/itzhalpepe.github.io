@@ -29,8 +29,9 @@ let drawCircles = function () {
     let data = CONFIRMED;
     let header = CONFIRMED[0];
     let index = header.length - 1;
+    let topic = "bestätigte Fälle";
 
-    document.querySelector("#datum").innerHTML = `am ${header[index]}`;
+    document.querySelector("#datum").innerHTML = `am ${header[index]} - ${topic}`;
 
     // for-Schleife über alle Arrays der CONFIRMED Einträge:
 
