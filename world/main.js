@@ -46,12 +46,14 @@ let drawCircles = function () {
         color = "#2ECC40";
     }
 
-    console.log(CONFIRMED == RECOVERED);
-
     // Datum & Thema anzeigen anzeigen
     document.querySelector("#datum").innerHTML = `am ${header[index]} - ${label}`;
 
     circleGroup.clearLayers();
+
+    data.sort(function compareNumbers(row1,row2) {
+        return row2[index] - row1[index];
+    });
 
     //console.log(data);
     for (let i = 1; i < data.length; i++) {
@@ -61,12 +63,14 @@ let drawCircles = function () {
         let lat = row[2];
         let lng = row[3];
         let val = row[index];
+
+        if (val === "0") {
+            continue;
+            //console.log(val)
+        }
+
         //let mrk = L.marker([lat,lng]).addTo(map);
         //mrk.bindPopup(`${reg}: ${val}`);
-
-        if (val === "0"){
-            continue;
-        }
 
         //A = r²*PI
         //r² = A/PI
@@ -96,3 +100,35 @@ slider.onchange = function () {
 };
 
 drawCircles();
+
+let playButton = document.querySelector("#play");
+let runningAnimation = null;
+
+playButton.onclick = function () {
+    let value;
+    if (slider.value == slider.max) {
+        value = slider.min;
+    } else {
+        value = slider.value;
+    }
+
+    playButton.value = "⏸";
+
+    if (runningAnimation) {
+        window.clearInterval(runningAnimation);
+        playButton.value = "▶";
+        runningAnimation = null;
+    } else {
+        runningAnimation = window.setInterval(function () {
+            slider.value = value;
+            drawCircles();
+            value++;
+
+            if (value > slider.max) {
+                window.clearInterval(runningAnimation);
+                playButton.value = "▶";
+                runningAnimation = null;
+            }
+        }, 250)
+    }
+};
