@@ -19,9 +19,9 @@
     <script defer src="main.js"></script>
 </head>
 
-<body>
+<<body>
     <header>
-        <h2><i class="fas fa-map-marked"></i<>COVID-19 Verbreitung>span id="datum"></h2>
+        <h2><i class="fas fa-map-marked"></i> COVID-19 Verbreitung<span id="datum"></span></h2>
         <nav>
             <p>
                 <i class="fab fa-github"></i> <a href="https://github.com/webmapping/webmapping.github.io/tree/master/world">Source</a> |
@@ -32,10 +32,11 @@
 
     <main>
         <div id="map"></div>
+        <input type="range" id="slider"> 
         <select id="pulldown">
-            <option value="confirmed">bestätigte Fälle</option>
+            <option value="confirmed" selected>bestättigte Fälle </option>
             <option value="deaths">Verstorbene</option>
-            <option value="recovered" selected>sbestätigte Fälle</option>
+            <option value="recovered">Genesene</option>
         </select>
     </main>
 </body>
