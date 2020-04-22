@@ -43,6 +43,8 @@ let aws = L.geoJson.ajax(awsUrl, {
         <li>Datum: ${point.properties.date}</li>
         <li>Lufttemperatur: ${point.properties.LT} °C</li>
         <li>Windgeschwindigkeit: ${point.properties.WG} m/s</li>
+        <li>Relative Luftfeuchte: ${point.properties.RH} %</li>
+        <li>Schneehöhe: ${point.properties.HS} cm</li>
         </ul>
         `);
         return marker;
