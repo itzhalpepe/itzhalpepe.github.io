@@ -32,7 +32,7 @@ let awsUrl = "https://aws.openweb.cc/stations";
 let aws = L.geoJson.ajax(awsUrl, {
     filter: function (feature) {
         console.log("Feature in filter: ", feature);
-        return feature.geometry.LT != null;
+        return feature.properties.LT != null;
     },
     pointToLayer: function (point, latlng) {
         // console.log("point: ", point);
@@ -46,6 +46,7 @@ let aws = L.geoJson.ajax(awsUrl, {
         <li>Relative Luftfeuchte: ${point.properties.RH} %</li>
         <li>Schneehöhe: ${point.properties.HS} cm</li>
         </ul>
+        <a href="https://lawine.tirol.gv.at/data/grafiken/1100/standard/tag/${point.properties.plot}.png">Wetterverlauf</a>
         `);
         return marker;
     }
