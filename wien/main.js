@@ -40,8 +40,8 @@ let sights = L.geoJson.ajax(sightUrl, {
         });
         console.log("Point", point);
         marker.bindPopup(`<h3>${point.properties.NAME}</h3>
-        <p> Adresse: ${point.properties.ADRESSE} </p>
-        <p> Bemerkung: ${point.properties.BEMERKUNG} </p>
+        <p>Adresse: ${point.properties.ADRESSE} </p>
+        <p>Bemerkung: ${point.properties.BEMERKUNG} </p>
         <p><a target="links" href="${point.properties.WEITERE_INF}">Weitere Informationen</a></p>
         `);
         return marker;
@@ -68,7 +68,7 @@ L.geoJson.ajax(wandern, {
             return {
                 color: "black",
                 dashArray: [1, 7],
-                fillOpacity: 0.3
+                fillOpacity: 0.1
             };
 
         }
