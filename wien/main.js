@@ -38,24 +38,29 @@ let sights = L.geoJson.ajax(sightUrl, {
         let marker = L.marker(latlng, {
             icon: icon
         });
-        // console.log("Point", point);
-        marker.bindPopup(`<h3>${point.properties.NAME}</h3>
-        <p><a target="links" href="${point.properties.WEITERE_INF}">Link</a></p>
-        `);
+
+        let popupText = `<h3>${point.properties.Name}</h3>`
+                `<ul>`
+                `<li>Bemerkung: ${point.properties.Bemerkung}</li>`
+                `<li>Adresse: ${point.properties.date}</li>`
+                `</ul>`
+                `<a target ="links" href="{point.properties.WEITERE_INF}">>>Weitere Informationen</a>`
+        marker.bindPopup(popupText)
         return marker;
     }
 });
 
 sights.on("data:loaded", function() {
     sightGroup.addLayer(sights);
-    console.log('data loaded!');
+    console.log("data loaded!");
     map.fitBounds(sightGroup.getBounds());
 });
 
 let wandern = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WANDERWEGEOGD&srsName=EPSG:4326&outputFormat=json";
 
 L.geoJson.ajax(wandern, {
-    style: function() {
+    style: function(feature) {
+        
         return { color: "green", weight: 5 };
     }
 }).addTo(map);
