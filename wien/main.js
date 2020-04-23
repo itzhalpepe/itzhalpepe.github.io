@@ -67,7 +67,7 @@ L.geoJson.ajax(wandern, {
         } else if (feature.properties.TYP == "2") {
             return {
                 color: "black",
-                dashArray: [1, 7],
+                dashArray: [1, 10],
                 fillOpacity: 0.1
             };
 
