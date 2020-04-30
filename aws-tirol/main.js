@@ -172,7 +172,13 @@ aws.on("data:loaded", function() {
     drawSnow(aws.toGeoJSON());
     map.fitBounds(overlay.stations.getBounds());
 
+
     overlay.stations.addTo(map);
+    overlay.temperature.addTo(map);
+    overlay.wind.addTo(map);
+    overlay.humidity.addTo(map);
+    overlay.snow.addTo(map);
+
 
     //console.log(COLORS);
 });
