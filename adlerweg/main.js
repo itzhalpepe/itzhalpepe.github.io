@@ -49,11 +49,12 @@ for (const blick of ADLERBLICKE) {
 overlay.adlerblicke.addTo(map);
 
 let drawEtappe = function(nr) {
+    overlay.etappen.clearLayers();
     let track = ETAPPEN[nr].track.replace("A", "");
     let gpx = new L.GPX(`gpx/AdlerwegEtappe${track}.gpx`, {
         async: true,
         marker_options: {
-            startIconUrl: "icons/number_1.png",
+            startIconUrl: `icons/number_${nr}.png`,
             endIconUrl: "icons/finish.png",
             shadowUrl: null,
             iconSize: [32, 37],
@@ -83,8 +84,9 @@ for (let i=1; i < ETAPPEN.length; i++) {
     pulldown.innerHTML += `<option value = "${i}">${etappe.titel}</option>`;
 }
 pulldown.onchange = function(evt) {
-    let nr = evt.target.options[evt.target.options.selectedindex].value;
+    let nr = evt.target.options[evt.target.options.selectedIndex].value;
     // console.log(nr);
+    drawEtappe(nr);
 }
 
 
