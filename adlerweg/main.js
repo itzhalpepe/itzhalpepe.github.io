@@ -70,18 +70,21 @@ let drawEtappe = function(nr) {
         map.fitBounds(evt.target.getBounds());
     }).addTo(overlay.etappen);
     overlay.etappen.addTo(map);
-    console.log(nr);
+    // console.log(nr);
 };
 drawEtappe(22);
 
 let pulldown = document.querySelector("#pulldown");
-console.log(pulldown);
+// console.log(pulldown);
 
 for (let i=1; i < ETAPPEN.length; i++) {
     const etappe = ETAPPEN[i];
-    console.log(etappe);
+    // console.log(etappe);
     pulldown.innerHTML += `<option value = "${i}">${etappe.titel}</option>`;
 }
-pulldown
+pulldown.onchange = function(evt) {
+    let nr = evt.target.options[evt.target.options.selectedindex].value;
+    // console.log(nr);
+}
 
 
