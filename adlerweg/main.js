@@ -27,7 +27,7 @@ L.control.layers({
     ])
 }, {
     "Adlerblicke": overlay.adlerblicke,
-    "Etappen": overlay.etappen
+    "Adlerweg Etappen": overlay.etappen
 }).addTo(map);
 
 //console.log(ETAPPEN);
@@ -50,7 +50,11 @@ overlay.adlerblicke.addTo(map);
 
 let drawEtappe = function(nr) {
     overlay.etappen.clearLayers();
+
+    //console.log(ETAPPEN[nr].track);
     let track = ETAPPEN[nr].track.replace("A", "");
+    //console.log(track);
+
     let gpx = new L.GPX(`gpx/AdlerwegEtappe${track}.gpx`, {
         async: true,
         marker_options: {
@@ -71,22 +75,29 @@ let drawEtappe = function(nr) {
         map.fitBounds(evt.target.getBounds());
     }).addTo(overlay.etappen);
     overlay.etappen.addTo(map);
-    // console.log(nr);
+
+    for (const key in ETAPPEN[nr]) {
+        const val = ETAPPEN[nr][key];
+        console.log(`et-${key}`);
+        let elem = document.querySelector(`#et-${key}`);
+        if (elem) {
+            elem.innerHTML = val;
+            console.log(val);
+        }
+    }
 };
-drawEtappe(22);
+drawEtappe(10);
 
 let pulldown = document.querySelector("#pulldown");
-// console.log(pulldown);
+//console.log(pulldown);
 
-for (let i=1; i < ETAPPEN.length; i++) {
+for (let i = 1; i < ETAPPEN.length; i++) {
     const etappe = ETAPPEN[i];
-    // console.log(etappe);
-    pulldown.innerHTML += `<option value = "${i}">${etappe.titel}</option>`;
+    //console.log(etappe);
+    pulldown.innerHTML += `<option value="${i}">${etappe.titel}</option>`;
 }
 pulldown.onchange = function(evt) {
     let nr = evt.target.options[evt.target.options.selectedIndex].value;
-    // console.log(nr);
+    //console.log(nr);
     drawEtappe(nr);
 }
-
-
