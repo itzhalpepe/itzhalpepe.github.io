@@ -62,7 +62,7 @@ let aws = L.geoJson.ajax(awsUrl, {
     }
 }).addTo(overlay.stations);
 
-let getColor = function(val, ramp) {
+let getColor = function (val, ramp) {
     //console.log(val, ramp);
     let col = "red";
 
@@ -80,14 +80,14 @@ let getColor = function(val, ramp) {
 
 // console.log(color);
 
-let drawTemperature = function(jsonData) {
+let drawTemperature = function (jsonData) {
     //console.log("aus der Funktion", jsonData);
     L.geoJson(jsonData, {
-        filter: function(feature) {
+        filter: function (feature) {
             return feature.properties.LT;
         },
-        pointToLayer: function(feature, latlng) {
-            let color = getColor(feature.properties.LT,COLORS.temperature);
+        pointToLayer: function (feature, latlng) {
+            let color = getColor(feature.properties.LT, COLORS.temperature);
             return L.marker(latlng, {
                 title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,
                 icon: L.divIcon({
@@ -104,15 +104,15 @@ let drawTemperature = function(jsonData) {
 // 3. einen neuen Stil .label-wind im CSS von main.css
 // 4. die Funktion drawWind in data:loaded aufrufen
 
-let drawWind = function(jsonData) {
+let drawWind = function (jsonData) {
     //console.log("aus der Funktion", jsonData);
     L.geoJson(jsonData, {
-        filter: function(feature) {
+        filter: function (feature) {
             return feature.properties.WG;
         },
-        pointToLayer: function(feature, latlng) {
+        pointToLayer: function (feature, latlng) {
             let kmh = Math.round(feature.properties.WG / 1000 * 3600);
-            let color = getColor(feature.properties.WG,COLORS.wind);
+            let color = getColor(feature.properties.WG, COLORS.wind);
             return L.marker(latlng, {
                 title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,
                 icon: L.divIcon({
@@ -124,13 +124,13 @@ let drawWind = function(jsonData) {
     }).addTo(overlay.wind);
 };
 
-let drawHumidity = function(jsonData) {
+let drawHumidity = function (jsonData) {
     L.geoJson(jsonData, {
-        filter: function(feature) {
+        filter: function (feature) {
             return feature.properties.RH;
         },
-        pointToLayer: function(feature, latlng) {
-            let color = getColor(feature.properties.RH,COLORS.humidity);
+        pointToLayer: function (feature, latlng) {
+            let color = getColor(feature.properties.RH, COLORS.humidity);
             return L.marker(latlng, {
                 title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,
                 icon: L.divIcon({
@@ -164,7 +164,7 @@ let drawSnow = function (jsonData) {
 };
 
 
-aws.on("data:loaded", function() {
+aws.on("data:loaded", function () {
     //console.log(aws.toGeoJSON());
     drawTemperature(aws.toGeoJSON());
     drawWind(aws.toGeoJSON());
@@ -183,7 +183,7 @@ aws.on("data:loaded", function() {
     //console.log(COLORS);
 });
 
-L.control.rainviewer({ 
+L.control.rainviewer({
     position: 'bottomleft',
     nextButtonText: '>',
     playStopButtonText: 'Play/Stop',
