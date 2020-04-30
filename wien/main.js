@@ -64,16 +64,14 @@ L.geoJson.ajax(wandern, {
                 dashArray: [8, 8],
                 fillOpacity: 0.5
             };
-        } else if (feature.properties.TYP == "2") {
+        } else {
             return {
                 color: "black",
-                dashArray: [1, 10],
-                fillOpacity: 0.1
+                weight: 2,
+                dashArray: "1 5"
             };
-
         }
-    },
-    onEachFeature: function (feature, layer) {
+    },hFeature: function (feature, layer) {
         layer.bindPopup(`${feature.properties.BEZ_TEXT}`)
     }
 }).addTo(map)
