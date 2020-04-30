@@ -31,7 +31,7 @@ L.control.layers({
     "Wetterstationen Tirol": overlay.stations,
     "Temperatur (°C)": overlay.temperature,
     "Windgeschwindigkeit (km/h)": overlay.wind,
-    "Luftfeuchtigkeit (%)": overlay.humidity
+    "Relative Luftfeuchtigkeit (%)": overlay.humidity
 }).addTo(map);
 
 let awsUrl = "https://aws.openweb.cc/stations";
@@ -76,7 +76,7 @@ let getColor = function(val, ramp) {
     return col;
 };
 
-//console.log(color);
+// console.log(color);
 
 let drawTemperature = function(jsonData) {
     //console.log("aus der Funktion", jsonData);
@@ -132,13 +132,37 @@ let drawHumidity = function(jsonData) {
             return L.marker(latlng, {
                 title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,
                 icon: L.divIcon({
-                    html: `<div class="label-humidity" style="background-color:${color}">${deg}</div>`,
+                    html: `<div class="label-humidity" style="background-color:${color}">${feature.properties.RH.toFixed(1)}</div>`,
                     className: "ignore-me" // dirty hack
                 })
             })
         }
     }).addTo(overlay.humidity);
 };
+
+let drawSnow = function (jsonData) {
+    L.geoJson(jsonData, {
+        filter: function (feature) {
+            return feature.properties.HS
+        },
+        pointToLayer: function (feature, latlng) {
+            // console.log(feature)
+
+            let color = getColor(feature.properties.HS, COLORS.snow);
+
+            return L.marker(latlng, {
+                title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m) - ${feature.properties.HS} cm`,
+                icon: L.divIcon({
+                    html: `<div class="label-snow" style="background-color:${color}">${feature.properties.HS.toFixed(1)}</div>`,
+                    className: "ignore-me"
+                })
+
+            });
+        }
+    }).addTo(overlay.snow);
+
+};
+
 
 
 aws.on("data:loaded", function() {
@@ -148,7 +172,8 @@ aws.on("data:loaded", function() {
     drawHumidity(aws.toGeoJSON());
     map.fitBounds(overlay.stations.getBounds());
 
-    overlay.wind.addTo(map);
+    overlay.stations.addTo(map);
 
     //console.log(COLORS);
 });
+
