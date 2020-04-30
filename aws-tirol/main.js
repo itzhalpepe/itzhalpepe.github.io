@@ -9,7 +9,8 @@ let map = L.map("map", {
 let overlay = {
     stations: L.featureGroup(),
     temperature: L.featureGroup(),
-    wind: L.featureGroup()
+    wind: L.featureGroup(),
+    humidity: L.featureGroup()
 }
 
 L.control.layers({
@@ -27,7 +28,8 @@ L.control.layers({
 }, {
     "Wetterstationen Tirol": overlay.stations,
     "Temperatur (°C)": overlay.temperature,
-    "Windgeschwindigkeit (km/h)": overlay.wind
+    "Windgeschwindigkeit (km/h)": overlay.wind,
+    "Luftfeuchtigkeit (%)": overlay.humidity
 }).addTo(map);
 
 let awsUrl = "https://aws.openweb.cc/stations";
@@ -141,6 +143,7 @@ aws.on("data:loaded", function() {
     //console.log(aws.toGeoJSON());
     drawTemperature(aws.toGeoJSON());
     drawWind(aws.toGeoJSON());
+    drawHumidity(aws.toGeoJSON());
     map.fitBounds(overlay.stations.getBounds());
 
     overlay.wind.addTo(map);
