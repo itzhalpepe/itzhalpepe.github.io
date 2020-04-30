@@ -183,7 +183,7 @@ aws.on("data:loaded", function() {
     //console.log(COLORS);
 });
 
-L.control.rainviwer({ 
+L.control.rainviewer({ 
     position: 'bottomleft',
     nextButtonText: '>',
     playStopButtonText: 'Play/Stop',
