@@ -118,6 +118,25 @@ let drawWind = function(jsonData) {
     }).addTo(overlay.wind);
 };
 
+let drawHumidity = function(jsonData) {
+    L.geoJson(jsonData, {
+        filter: function(feature) {
+            return feature.properties.RH;
+        },
+        pointToLayer: function(feature, latlng) {
+            let color = getColor(feature.properties.RH,COLORS.humidity);
+            return L.marker(latlng, {
+                title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,
+                icon: L.divIcon({
+                    html: `<div class="label-humidity" style="background-color:${color}">${deg}</div>`,
+                    className: "ignore-me" // dirty hack
+                })
+            })
+        }
+    }).addTo(overlay.humidity);
+};
+
+
 aws.on("data:loaded", function() {
     //console.log(aws.toGeoJSON());
     drawTemperature(aws.toGeoJSON());
