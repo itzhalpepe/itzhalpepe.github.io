@@ -42,3 +42,11 @@ for (const blick of ADLERBLICKE) {
     mrk.bindPopup(`Standort ${blick.standort} (${blick.seehoehe}m)`);
 }
 overlay.adlerblicke.addTo(map);
+
+let gpx = new KeyboardEvent.GPX("gpx/AdlerwegEtape01.gpx", {
+    async: true
+});
+
+gpx. on("loaded", function(evt) {
+    map.fitBounds(evt.target.getBounds());
+}).addTo(map);
