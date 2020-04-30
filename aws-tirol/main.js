@@ -145,13 +145,12 @@ let drawHumidity = function(jsonData) {
 let drawSnow = function (jsonData) {
     L.geoJson(jsonData, {
         filter: function (feature) {
-            return feature.properties.HS
+            return feature.properties.HS;
         },
         pointToLayer: function (feature, latlng) {
             // console.log(feature)
 
             let color = getColor(feature.properties.HS, COLORS.snow);
-
             return L.marker(latlng, {
                 title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m) - ${feature.properties.HS} cm`,
                 icon: L.divIcon({
@@ -163,7 +162,6 @@ let drawSnow = function (jsonData) {
         }
     }).addTo(overlay.snow);
 };
-
 
 
 aws.on("data:loaded", function() {
@@ -179,3 +177,13 @@ aws.on("data:loaded", function() {
     //console.log(COLORS);
 });
 
+L.control.rainviwer({ 
+    position: 'bottomleft',
+    nextButtonText: '>',
+    playStopButtonText: 'Play/Stop',
+    prevButtonText: '<',
+    positionSliderLabelText: "Hour:",
+    opacitySliderLabelText: "Opacity:",
+    animationInterval: 500,
+    opacity: 0.5
+}).addTo(map);
