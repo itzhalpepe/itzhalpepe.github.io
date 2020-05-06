@@ -77,8 +77,10 @@ let drawEtappe = function(nr) {
     overlay.etappen.addTo(map);
 
     for (const key in ETAPPEN[nr]) {
-        const val = ETAPPEN[nr][key];
-        console.log(`et-${key}`);
+        let val = ETAPPEN[nr][key];
+        if (key == "einkehr") {
+            val = ETAPPEN[nr][key].replace(/#/g, ", "); 
+        };
         let elem = document.querySelector(`#et-${key}`);
         if (elem) {
             elem.innerHTML = val;
@@ -100,4 +102,4 @@ pulldown.onchange = function(evt) {
     let nr = evt.target.options[evt.target.options.selectedIndex].value;
     //console.log(nr);
     drawEtappe(nr);
-}
+};
