@@ -41,3 +41,12 @@ main h2 {
     height: 70vh;
     border: 1px solid gray;
 }
+
+#et-info {
+    font-size: 1em;
+    text-align: justify;
+    color: black;
+    float: right;
+    padding-right: 0.5em;
+    margin-top: 0.5em;
+}
